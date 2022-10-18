@@ -9,9 +9,7 @@ tags:
     description: Authentication / Authorization
   - name: Links
     description: Add, edit, delete links
-
-
-
+     
 
 paths:
   /api/:
@@ -28,7 +26,143 @@ paths:
                 properties:
                   message:
                     type: string
-
+                    
+  /api/users/signup:
+   post:
+    tags:
+     - Auth
+    description: Register a new user
+    requestBody:
+        description: User registration details
+        content:
+          application/json:
+           schema:
+             type: object
+             properties:
+               email:
+                type: string
+                description: Email address of the user
+                required: true
+                example: john.doe@abc.com
+               password:
+                type: string
+                description: User password
+                required: true
+            
+      responses:
+        200:
+         description: Sign up successful.
+         
+        400:
+          description: Validation Failures
+          content:
+            application/json:
+              schema:
+                required:
+                  - success
+                  - message
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string  
+                    
+        409:
+          description: Account with that email address already exists.
+          content:
+            application/json:
+              schema:
+                required:
+                  - success
+                  - message
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                    
+        500:
+          description: Sign up error
+          content:
+            application/json:
+              schema:
+                required:
+                  - success
+                  - message
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                    
+  /api/users/login:
+   post:
+    tags:
+     - Auth
+    description: Register a new user
+    requestBody:
+        description: User registration details
+        content:
+          application/json:
+           schema:
+             type: object
+             properties:
+               email:
+                type: string
+                description: Email address of the user
+                required: true
+                example: john.doe@abc.com
+               password:
+                type: string
+                description: User password
+                required: true
+            
+      responses:
+        200:
+         description: Sign up successful.
+         
+        400:
+          description: Validation Failures
+          content:
+            application/json:
+              schema:
+                required:
+                  - success
+                  - message
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string  
+                    
+        409:
+          description: Account with that email address already exists.
+          content:
+            application/json:
+              schema:
+                required:
+                  - success
+                  - message
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                    
+        500:
+          description: Sign up error
+          content:
+            application/json:
+              schema:
+                required:
+                  - success
+                  - message
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                    
   /api/links:
     get:
       tags:
